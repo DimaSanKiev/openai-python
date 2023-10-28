@@ -1,2 +1,2 @@
 .idea
-resources/openai_api_key.txt
+secret/openai_api_key.txt

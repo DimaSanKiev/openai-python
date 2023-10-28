@@ -1,7 +1,7 @@
 import openai
 
 # Load your API key from a file
-with open('resources/openai_api_key.txt', 'r') as file:
+with open('../secret/openai_api_key.txt', 'r') as file:
     api_key = file.read().strip()
 
 # Initialize the OpenAI API client
