@@ -1,2 +1,3 @@
 .idea
 secret/openai_api_key.txt
+03_automatic_exam_creator/tests_log
