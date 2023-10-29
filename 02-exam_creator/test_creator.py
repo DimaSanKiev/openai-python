@@ -12,7 +12,7 @@ class TestGenerator:
         if self.num_questions > 6:
             raise ValueError("Attention! Generation of many questions might be expensive!")
         if self.num_possible_answers > 5:
-            raise ValueError("More than 5 possible answers is not supported!")
+            raise ValueError("More than 5 possible answers are not supported!")
 
     def run(self):
         prompt = self.create_prompt()
@@ -22,6 +22,7 @@ class TestGenerator:
 
         raise ValueError("Prompt not accepted.")
 
+    @staticmethod
     def generate_quiz(prompt):
         response = openai.Completion.create(
             engine="gpt-3.5-turbo-instruct",

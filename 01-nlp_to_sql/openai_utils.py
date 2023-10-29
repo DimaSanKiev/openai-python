@@ -3,13 +3,13 @@ import openai
 
 def create_table_definition_prompt(df, table_name):
     """
-    This function creates a prompt for the OpenAI API to generate SQL queries.
+    Create a prompt for the OpenAI API to generate SQL queries.
     :param df: pd.DataFrame object to automatically extract the table columns
     :param table_name: Name of the table within the database
-    :return: string containing the prompt for OpenAI
+    :return: String containing the prompt for OpenAI
     """
 
-    prompt = '''### sqlite table, with its properties:
+    prompt = '''### SQLite table, with its properties:
 #
 # {}({})
 #
@@ -21,7 +21,7 @@ def create_table_definition_prompt(df, table_name):
 def user_query_input():
     """
     Ask the user what they want to know about the data.
-    :return: user input, string
+    :return: User input, string
     """
     user_input = input("Tell OpenAI what you want to know about the data: ")
     return user_input

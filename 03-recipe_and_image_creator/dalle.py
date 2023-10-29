@@ -1,29 +1,27 @@
 import re
 import requests
 import shutil
-
 import openai
 
 
 class Dish2Image:
     def __init__(self, recipe):
         self.recipe = recipe
-        self.title = Dish2Image._extract_title(recipe)
+        self.title = self._extract_title(recipe)
 
     def generate_image(self):
         prompt = self.dalle2_prompt()
-        if Dish2Image._verify_prompt(prompt):
-            response = Dish2Image.generate(prompt)
+        if self._verify_prompt(prompt):
+            response = self.generate(prompt)
             image_url = response['data'][0]['url']
-            return Dish2Image.save_image(image_url, f"recipes_log/{self.title}.jpg")
+            return self.save_image(image_url, f"recipes_log/{self.title}.jpg")
         raise ValueError("Prompt not accepted.")
 
     def dalle2_prompt(self):
         prompt = f"'{self.title}', professional food photography, 15mm, studio lighting"
         return prompt
 
-    @staticmethod
-    def _verify_prompt(prompt):
+    def _verify_prompt(self, prompt):
         print(prompt)
         response = input("Are you happy with the prompt? (y/n)")
 

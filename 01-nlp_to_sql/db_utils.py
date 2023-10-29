@@ -5,7 +5,7 @@ from sqlalchemy import text
 def dataframe_to_database(df, table_name):
     """
     Convert a pandas dataframe to a database.
-    :param df: pd.DataFrame which is to be converted to a database
+    :param df: pd.DataFrame to be converted to a database
     :param table_name: Name of the table within the database
     :return: engine: SQLAlchemy engine object
     """
@@ -16,7 +16,7 @@ def dataframe_to_database(df, table_name):
 
 def handle_response(response):
     """Handles the response from OpenAI.
-    :param response: Response json from OpenAI
+    :param response: Response JSON from OpenAI
     :return: Proposed SQL query
     """
     query = response["choices"][0]["text"]
@@ -28,9 +28,9 @@ def handle_response(response):
 def execute_query(engine, query):
     """
     Execute a query on a database.
-    :param engine: database engine (SQLAlchemy engine object)
+    :param engine: Database engine (SQLAlchemy engine object)
     :param query: SQL query (string)
-    :return: list of tuples containing the result of the query
+    :return: List of tuples containing the result of the query
     """
     with engine.connect() as conn:
         result = conn.execute(text(query))

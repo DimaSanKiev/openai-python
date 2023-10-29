@@ -1,10 +1,7 @@
 import logging
-
 from test_creator import TestGenerator
 
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
-
-dummy_test = "\n\nQ1. What is the syntax for declaring a variable in Python?\nA. #var my_variable\nB. {name = 'John'}\nC. counter == 0\nD. my_variable = 42"
 
 
 class Teacher:
@@ -42,7 +39,6 @@ class Teacher:
         for line in test.split("\n"):
             if line.startswith("Correct Answer:"):
                 answers[question_number] += line + "\n"
-
                 if question_number < num_questions:
                     question_number += 1
                     answers[question_number] = ""

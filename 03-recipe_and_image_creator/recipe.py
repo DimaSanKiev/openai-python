@@ -4,7 +4,6 @@ openai.api_key_path = "../secret/openai_api_key.txt"
 
 
 class RecipeGenerator:
-
     def __init__(self):
         self.list_of_ingredients = self.ask_for_ingredients()
 
@@ -18,24 +17,23 @@ class RecipeGenerator:
             list_of_ingredients.append(ingredient)
 
         print(f"Your ingredients are: {', '.join(list_of_ingredients)}")
-
         return list_of_ingredients
 
     def generate_recipe(self):
         prompt = RecipeGenerator.create_recipe_prompt(self.list_of_ingredients)
-        if RecipeGenerator._verify_prompt(prompt):
-            repsonse = RecipeGenerator.generate(prompt)
-            return repsonse["choices"][0]["text"]
+        if self._verify_prompt(prompt):
+            response = self.generate(prompt)
+            return response["choices"][0]["text"]
         raise ValueError("Prompt not accepted.")
 
     @staticmethod
     def create_recipe_prompt(list_of_ingredients):
-        prompt = (f"Create a detailed recipe based on only the following ingredients: {', '.join(list_of_ingredients)}.\n"
-                  f"Additionally, assign a title starting with 'Recipe Title: ' to this recipe.")
+        prompt = (
+            f"Create a detailed recipe based on only the following ingredients: {', '.join(list_of_ingredients)}.\n"
+            f"Additionally, assign a title starting with 'Recipe Title: ' to this recipe.")
         return prompt
 
-    @staticmethod
-    def _verify_prompt(prompt):
+    def _verify_prompt(self, prompt):
         print(prompt)
         response = input("Are you happy with the prompt? (y/n)")
 

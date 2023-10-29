@@ -1,10 +1,8 @@
 # Dataset based on https://www.kaggle.com/datasets/kyanyoga/sample-sales-data
 
 import logging
-
 import openai
 import pandas as pd
-
 import db_utils
 import openai_utils
 
@@ -16,7 +14,7 @@ if __name__ == "__main__":
     df = pd.read_csv("resources/sales_data_sample.csv", encoding="ISO-8859-1")
     logging.info(f"Data format: {df.shape}")
 
-    logging.info("Converting to database...")
+    logging.info("Converting data to a database...")
     database = db_utils.dataframe_to_database(df, "Sales")
 
     fixed_sql_prompt = openai_utils.create_table_definition_prompt(df, "Sales")
@@ -27,7 +25,7 @@ if __name__ == "__main__":
     final_prompt = openai_utils.combine_prompts(fixed_sql_prompt, user_input)
     logging.info(f"Final prompt: {final_prompt}")
 
-    logging.info("Sending to OpenAI...")
+    logging.info("Sending the prompt to OpenAI...")
     response = openai_utils.send_to_openai(final_prompt)
     proposed_query = response["choices"][0]["text"]
     proposed_query_postprocessed = db_utils.handle_response(response)
